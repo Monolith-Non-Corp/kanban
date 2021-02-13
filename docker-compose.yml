@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+  kanban-db:
+    container_name: kanban-db
+    image: mysql
+    ports:
+      - 9000:3306
+    environment:
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=kanban
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - mysql:/var/lib/mysql
+
+  kanban-client:
+    container_name: kanban-client
+    build: './reactjsclient'
+    ports:
+      - "3000:3000"
+    depends_on:
+        - kanban-server
+
+  kanban-server:
+    container_name: kanban-server
+    image: springbootserver:0.0.1-SNAPSHOT
+    ports:
+      - "9010:9010"
+    depends_on:
+        - kanban-db
+
+volumes:
+  mysql:

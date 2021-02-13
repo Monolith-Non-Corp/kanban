@@ -1,0 +1,6 @@
+[submodule "kanban-client"]
+	path = kanban-client
+	url = https://github.com/Monolith-Non-Corp/kanban-client
+[submodule "kanban-server"]
+	path = kanban-server
+	url = https://github.com/Monolith-Non-Corp/kanban-server
